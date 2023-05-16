@@ -1,43 +1,16 @@
-import React, { FC, useState } from "react";
-import { Link, Navigate, Route, Routes } from "react-router-dom";
+import React, { FC } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Aside from "../components/aside/Aside";
-import UserPopup, { User } from "../components/userPopup/UserPopup";
+import Header from "../components/header/Header";
 import Content from "../pages/content/Content";
 import Home from "../pages/home/Home";
-import logoIcon from "./../assets/images/logo.png";
-import userIcon from "./../assets/images/user.png";
-import {
-  AppContainer,
-  Header,
-  Logo,
-  Main,
-  UserButton,
-  UserLogo,
-} from "./AppStyle";
+import { AppContainer, Main } from "./AppStyle";
 
 const App: FC = () => {
-  const [isOpenPopup, setIsOpenPopup] = useState(false);
-  const [user] = useState<User>({
-    name: "Artyom Onufrienko",
-    email: "onufrienko.artem00@gmail.com",
-  });
-
-  const togglePopup = () => {
-    setIsOpenPopup(!isOpenPopup);
-  };
-
   return (
     <>
       <AppContainer>
-        <Header>
-          <Link to="/">
-            <Logo src={logoIcon} alt="Logo" />
-          </Link>
-          <UserButton onClick={() => togglePopup()}>
-            <UserLogo src={userIcon} alt="User icon" />
-          </UserButton>
-          {isOpenPopup && <UserPopup user={user} onClose={togglePopup} />}
-        </Header>
+        <Header />
         <Main>
           <Aside />
           <Routes>
